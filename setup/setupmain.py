@@ -6,7 +6,7 @@ import setupsubst
 user = 'aam21005'
 
 # Specify local = True if testing on your local laptop; if running on cluster set local = False
-local = True
+local = False
 
 # This directory will be created and will contain the master slurm scripts as well
 # as a subdirectory for every simulation replicate
@@ -27,8 +27,8 @@ if user == 'aam21005':
         simulator_path = 'fbd'
         smc_path       = 'fbd'
     else:
-        simulator_path = 'fbd'
-        smc_path       = 'fbd'
+        simulator_path = 'fbd-smc'
+        smc_path       = 'fbd-smc'
 
 #######################
 # Simulation settings #
@@ -38,7 +38,7 @@ if user == 'aam21005':
 useFASTA = True
 
 # No. points along the x and y axes
-ngridpoints = 3
+ngridpoints = 2
 
 # If ngridpoints > 1, this option is ignored and nreps is
 # instead set to ngridpoints^2
@@ -46,68 +46,34 @@ nreps = 1
 
 # number of loci varies among simulations
 #nloci           = 10
-min_n_loci = 10
-max_n_loci = 10
+min_n_loci = 1
+max_n_loci = 1
 
 min_sites_per_locus = 1000
 max_sites_per_locus = 1000
-
-# Variance of lognormal distribution governing variation
-# among rates on each edge of a gene tree. The mean rate
-# is 1.0 because these are relative rates.
-min_edge_rate_variance = 0.0
-max_edge_rate_variance = 0.0
 
 # Shape of Gamma distribution determining relative rates among loci
 # Mean must equal 1, so scale=1/shape and variance = shape*scale^2 = 1/shape
 subset_relrate_shape = 10000.0
 
-# Shape of Gamma distribution determining relative rates among sites
-# within loci. Mean must equal 1, so scale = 1/shape and variance = shape*scale^2 = 1/shape
-min_asrv_shape = 10000.0
-max_asrv_shape = 10000.0
-
-# Occupancy is the probability that a particular taxon will
-# be included for a particular gene. 1.0 means there will be
-# data for all taxa in all genes. 0.9 means that, on average,
-# 10% of taxa will have all missing data for any given locus
-min_occupancy = 1.0
-max_occupancy = 1.0
-
-# Compositional heterogeneity is determined by a Dirichlet(a,a,a,a)
-# distribution for any given locus. For example, setting 
-# comphet = 1000 will ensure that piA, piC, piG, piT are all
-# very nearly 0.25 for a locus, while comphet = 1 results in
-# a completely unpredictable set of equilibrium base frequencies
-# for a locus.
-min_comphet = 10000
-max_comphet = 10000
-
 species            = ['A', 'B', 'C', 'D', 'E']
-indivs_for_species = [ 2,   2,   2,   2,   2]
 
-if mu_vs_lambda:
+mu_min = 1.0
+mu_max = 1.0
     
-    mu_min = 1.0
-    mu_max = 100.0
-    
-    lambda_min = 1.0
-    lambda_max = 100.0
+
+lambda_min = 10.0
+lambda_max = 10.0
     
 ################
 # SMC settings #
 ################
 
-# Determines values of theta and lambda provided to BEAST and SMC
-# If True, use SVD-qage estimates of theta and lambda
-# If False, use true theta and lambda
-smc_use_svdq_estimates = False 
-
-smc_nparticles        = 1000
-if user == 'aam21005' or user == 'jjc23002':
+smc_nparticles        = 200
+if user == 'aam21005':
     smc_saveevery		  = 1
-    smc_nthreads		  = 3
-    smc_ngroups			  = 3
+    smc_nthreads		  = 5
+    smc_ngroups			  = 5
     smc_treefile   = 'trees.trees'
 else:
     assert False, 'user must be aam21005'

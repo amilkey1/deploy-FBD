@@ -88,30 +88,3 @@ def readNexusFile(fn):
                     sequences[taxon_name] = parts[1]
 
     return (ntax, nchar, mask, taxa, sequences)
-
-#def beast(simpath, nloci, sites_per_locus):
-def beast(simpath, nloci, subset_info):
-    assert os.path.exists(simpath)
-    ntax, nchar, mask, taxa, sequences = readNexusFile(simpath)
-    
-    seqs = ''
-    #for g in range(nloci):
-    for subset in subset_info:
-        locus = subset['locus']
-        #seq_begin = g*sites_per_locus
-        #seq_end   = seq_begin + sites_per_locus
-        seq_begin = subset['first']-1
-        seq_end   = subset['last']
-
-        seqs += '    <data\n'
-        #seqs += '        id="gene%d"\n' % (g+1,)
-        seqs += '        id="gene%d"\n' % locus
-        seqs += '        spec="Alignment"\n'
-        seqs += '        name="alignment">\n'
-        for t in taxa:
-            seq = sequences[t][seq_begin:seq_end]
-            #seqs += '        <sequence id="seq_%s%d" spec="Sequence" taxon="%s" totalcount="4" value="%s"/>\n' % (t, g+1, t, seq)
-            seqs += '        <sequence id="seq_%s%d" spec="Sequence" taxon="%s" totalcount="4" value="%s"/>\n' % (t, locus, t, seq)
-        seqs += '    </data>\n'
-    return taxa,seqs
-

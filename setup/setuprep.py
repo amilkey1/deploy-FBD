@@ -188,8 +188,6 @@ def run(rep, nreps, maindir, repdir, rnseed):
         extinction_rate      =  setupmain.mu_min + row*(setupmain.mu_max  - setupmain.mu_max)/(dim-1)
         speciation_rate = setupmain.lambda_min + col*(setupmain.lambda_max - setupmain.lambda_min)/(dim-1)
             
-#        extinction_rate = 2.0*extinction_rate
-#        speciation_rate = suminv/T
     
     ##############################
     # Set up the "sim" directory #
@@ -218,9 +216,7 @@ def run(rep, nreps, maindir, repdir, rnseed):
 
         # Choose the relative rate for this locus 
         relrate_this_locus = random.gammavariate(setupmain.subset_relrate_shape, setupmain.subset_relrate_scale)
-        if setupmain.user == 'pol02003':
-            relrates += 'relrate = locus%d:%.5f\n' % (locus, relrate_this_locus)
-        elif setupmain.user == 'aam21005' or setupmain.user == 'jjc23002':
+        if setupmain.user == 'aam21005':
             if g == 0:
                 relrates += str(relrate_this_locus)
             else:
@@ -236,42 +232,18 @@ def run(rep, nreps, maindir, repdir, rnseed):
         refinfof.write('  first   = %d\n' % first)
         refinfof.write('  last    = %d\n' % last)
         refinfof.flush()
-        
+
         site_cursor += nsites_this_locus
-        
-    if setupmain.user == 'aam21005' or setupmain.user == 'jjc23002':
+
+    if setupmain.user == 'aam21005':
          relrates += '\n'
-        
+
     # Define number of species and number of individuals for each species
     nspecies = len(setupmain.species) 
-    if setupmain.user == 'pol02003':
-        species = 'simnspecies = %d\n' % nspecies
-        for s in range(nspecies):
-            nindivs = setupmain.indivs_for_species[s]
-            species += 'simntaxaperspecies = %d\n' % nindivs
-    elif setupmain.user == 'aam21005' or setupmain.user == 'jjc23002':
+    if setupmain.user == 'aam21005':
         species = 'nspecies = %d\n' % nspecies
-        species += 'ntaxaperspecies = '
-        species += ','.join(['%d' % x for x in setupmain.indivs_for_species])
         species += '\n'
-        
-    # Choose random edge rate variance
-    u = random.random()
-    edge_rate_variance = setupmain.min_edge_rate_variance + u*(setupmain.max_edge_rate_variance - setupmain.min_edge_rate_variance)
-    
-    # Choose random occupancy probability
-    u = random.random()
-    occupancy = setupmain.min_occupancy + u*(setupmain.max_occupancy - setupmain.min_occupancy)
-    
-    # Choose random ASRV shape
-    u = random.random()
-    asrv_shape = setupmain.min_asrv_shape + u*(setupmain.max_asrv_shape - setupmain.min_asrv_shape)
-    
-    # Choose random compositional heterogeneity Dirichlet parameter
-    u = random.random()
-    comphet = setupmain.min_comphet + u*(setupmain.max_comphet - setupmain.min_comphet)
-    
-    
+
     if setupmain.user == "aam21005":
          setupsubst.substitutions({
              '__RNSEED__':        rnseed, 
@@ -329,7 +301,7 @@ def run(rep, nreps, maindir, repdir, rnseed):
     # Append to the "rfsmc.nex" file #
     ##################################
     smcrf_for_rep = '''
-    gettrees file = %s/true-species-tree.tre mode=3;
+    gettrees file = %s/sim.tre mode=3;
     gettrees file = %s/%s mode=7;
     deroot;
     treedist all / measure=rfSymDiff refTree=1 file=smcrf%d.txt;
