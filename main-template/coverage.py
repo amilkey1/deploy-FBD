@@ -11,7 +11,7 @@ for rep in range(nreps):
 	stuff = open(fn, 'r').read()
 	m1 = re.search(r'([.0-9]+)', stuff, re.M | re.S)
 	min = m1.group(0)
-	print("\t", min, " ,")
+	print("\t", min, " ,", end='')
 
 print("max:")
 for rep in range(nreps):
@@ -22,7 +22,7 @@ for rep in range(nreps):
         stuff = open(fn, 'r').read()
         m3 = re.search(r'\t([.0-9]+)', stuff, re.M | re.S)
         max = m3.group(0)
-        print("\t", max, " ,")
+        print("\t", max, " ,", end='')
 
 print("true:")
 for rep in range(nreps):
@@ -33,7 +33,7 @@ for rep in range(nreps):
         stuff = open(fn, 'r').read()
         m4 = re.search(r'\t([.0-9]+)\t([.0-9]+)', stuff, re.M | re.S)
         true = m4.group(2)
-        print("\t", true, " ,")
+        print("\t", true, " ,", end='')
 
 print("observed:")
 for rep in range(nreps):
@@ -44,4 +44,4 @@ for rep in range(nreps):
         stuff = open(fn, 'r').read()
         m5 = re.search(r'\t([.0-9]+)\t([.0-9]+)\t([.0-9]+)', stuff, re.M | re.S)
         observed = m5.group(3)
-        print("\t", observed, " ,")
+        print("\t", observed, " ,", end='')
