@@ -9,4 +9,4 @@ for rep in range(nreps):
 	stuff = open(fn, 'r').read()
 	m = re.search(r'rank: (?P<rank>[.0-9]+)', stuff, re.M | re.S)
 	rank = float(m.group('rank'))
-	print(rank, ",")
+	print(rank, ",", end='')
