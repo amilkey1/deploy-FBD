@@ -153,3 +153,11 @@ def run(maindir, nreps):
     setupsubst.substitutions({
         '__NREPS__': nreps,
         }, ruv_path, ruv_path)
+
+    #########################################
+    # Set up coverage.py script #
+    #########################################
+    coverage_path = os.path.join(maindir, 'coverage.py')
+    setupsubst.substitutions({
+        '__NREPS__': nreps,
+        }, coverage_path, coverage_path)
