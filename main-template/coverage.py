@@ -13,6 +13,8 @@ for rep in range(nreps):
 	min = m1.group(0)
 	print("\t", min, " ,", end='')
 
+print ("\n")
+print ("\n")
 print("max:")
 for rep in range(nreps):
         rep_plus_one = rep + 1
@@ -24,6 +26,8 @@ for rep in range(nreps):
         max = m3.group(0)
         print("\t", max, " ,", end='')
 
+print ("\n")
+print ("\n")
 print("true:")
 for rep in range(nreps):
         rep_plus_one = rep + 1
@@ -35,6 +39,8 @@ for rep in range(nreps):
         true = m4.group(2)
         print("\t", true, " ,", end='')
 
+print ("\n")
+print ("\n")
 print("observed:")
 for rep in range(nreps):
         rep_plus_one = rep + 1
