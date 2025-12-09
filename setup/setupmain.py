@@ -96,8 +96,7 @@ def run(maindir, nreps):
     smc_slurm_path = os.path.join(maindir, 'smc.slurm')
     setupsubst.substitutions({
         '__SMC_PATH__': smc_path,
-        '__NJOBS__': nreps,
-        '__MAINDIR__': maindir
+        '__NJOBS__': nreps
         }, smc_slurm_path, smc_slurm_path)
         
     ###########################
