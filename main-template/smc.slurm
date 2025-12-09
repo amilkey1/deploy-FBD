@@ -14,5 +14,5 @@
 
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/lib"
 export TIMEFORMAT="user-seconds %3U"
-cd $HOME/__MAINDIR__/rep${SLURM_ARRAY_TASK_ID}/smc
+cd rep${SLURM_ARRAY_TASK_ID}/smc
 time __SMC_PATH__
