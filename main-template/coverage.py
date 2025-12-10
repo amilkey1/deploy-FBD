@@ -9,7 +9,7 @@ for rep in range(nreps):
 	# Extract rank
 	fn = 'rep%d/smc/hpd.txt' % rep_plus_one
 	stuff = open(fn, 'r').read()
-	m1 = re.search(r'([.0-9]+)', stuff, re.M | re.S)
+	m1 = re.search(r'[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?', stuff, re.M | re.S)
 	min = m1.group(0)
 	print("\t", min, " ,", end='')
 
@@ -22,8 +22,8 @@ for rep in range(nreps):
        	# Extract rank
         fn = 'rep%d/smc/hpd.txt' % rep_plus_one
         stuff = open(fn, 'r').read()
-        m3 = re.search(r'\t([.0-9]+)', stuff, re.M | re.S)
-        max = m3.group(0)
+        m2 = re.search(r'\t[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?', stuff, re.M | re.S)
+        max = m2.group(0)
         print("\t", max, " ,", end='')
 
 print ("\n")
@@ -35,8 +35,8 @@ for rep in range(nreps):
        	# Extract rank
         fn = 'rep%d/smc/hpd.txt' % rep_plus_one
         stuff = open(fn, 'r').read()
-        m4 = re.search(r'\t([.0-9]+)\t([.0-9]+)', stuff, re.M | re.S)
-        true = m4.group(2)
+        m3 = re.search(r'\t[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?(\t[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?)', stuff, re.M | re.S)
+        true = m3.group(3)
         print("\t", true, " ,", end='')
 
 print ("\n")
@@ -48,6 +48,6 @@ for rep in range(nreps):
         # Extract rank
         fn = 'rep%d/smc/hpd.txt' % rep_plus_one
         stuff = open(fn, 'r').read()
-        m5 = re.search(r'\t([.0-9]+)\t([.0-9]+)\t([.0-9]+)', stuff, re.M | re.S)
-        observed = m5.group(3)
+        m4 = re.search(r'\t[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?\t[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?(\t[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?)', stuff, re.M | re.S)
+        observed = m4.group(5)
         print("\t", observed, " ,", end='')
