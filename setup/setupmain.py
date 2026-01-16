@@ -6,14 +6,14 @@ import setupsubst
 user = 'aam21005'
 
 # Specify local = True if testing on your local laptop; if running on cluster set local = False
-local = False
+local = True
 
 # This directory will be created and will contain the master slurm scripts as well
 # as a subdirectory for every simulation replicate
 maindir = 'g'
 
 # Specify the master pseudorandom number seed
-master_seed = 1
+master_seed = 123
 
 # Specify whether grid should be mu vs lambda - always set to true
 mu_vs_lambda = True
@@ -38,7 +38,7 @@ if user == 'aam21005':
 useFASTA = True
 
 # No. points along the x and y axes
-ngridpoints = 2
+ngridpoints = 3
 
 # If ngridpoints > 1, this option is ignored and nreps is
 # instead set to ngridpoints^2
@@ -58,21 +58,21 @@ subset_relrate_shape = 10000.0
 
 species            = ['A', 'B', 'C', 'D', 'E']
 
-mu_min = 1.0
-mu_max = 1.0
-    
+mu_min = 0.2
+mu_max = 0.2
 
-lambda_min = 10.0
-lambda_max = 10.0
-    
+
+lambda_min = 1.0
+lambda_max = 1.0
+
 ################
 # SMC settings #
 ################
 
-smc_nparticles        = 200
+smc_nparticles        = 2000
 if user == 'aam21005':
     smc_saveevery		  = 1
-    smc_nthreads		  = 5
+    smc_nthreads		  = 3
     smc_ngroups			  = 5
     smc_treefile   = 'trees.trees'
 else:
@@ -84,12 +84,12 @@ else:
 
 if ngridpoints > 1:
     nreps = ngridpoints*ngridpoints
-    
+
 subset_relrate_scale = 1.0/subset_relrate_shape
 
 def run(maindir, nreps):
     print('  setting up main directory')
-                
+
     ###########################
     # Set up SMC slurm script #
     ###########################
@@ -98,7 +98,7 @@ def run(maindir, nreps):
         '__SMC_PATH__': smc_path,
         '__NJOBS__': nreps
         }, smc_slurm_path, smc_slurm_path)
-        
+
     ###########################
     # Set up rfsmc.nex script #
     ###########################
@@ -110,7 +110,7 @@ def run(maindir, nreps):
     setupsubst.substitutions({
         '__MAXTREES__': smc_samplesize + 1
         }, rfsmc_path, rfsmc_path)
-        
+
     #########################################
     # Set up ruv.py script #
     #########################################
