@@ -69,9 +69,9 @@ lambda_max = 1.0
 # SMC settings #
 ################
 
-smc_nparticles        = 2000
+smc_nparticles        = 10000
 if user == 'aam21005':
-    smc_saveevery		  = 1
+    smc_saveevery		  = 100
     smc_nthreads		  = 3
     smc_ngroups			  = 5
     smc_treefile   = 'trees.trees'
