@@ -1,0 +1,48 @@
+---
+title: "validation plots"
+author: "Analisa Milkey"
+date: "2025-07-16"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+setwd("")
+```
+
+Read in 95% HPD intervals, means, and true heights for fossil vs no fossil analyses (use "node-calibration.py" script).
+
+```{r}
+min_fossils <- c()
+
+max_fossils <- c()
+
+min_no_fossils <- c()
+
+max_no_fossils <- c()
+
+true <- c()
+
+observed_means_fossils <- c()
+
+observed_means_no_fossils <- c()
+```
+
+Plot coverage.
+
+```{r}
+df <- data.frame(true, min_fossils, max_fossils, observed_means_fossils, min_no_fossils, max_no_fossils,observed_means_no_fossils)
+
+p <- ggplot() +
+  geom_point(data = df, aes(true, observed_means_no_fossils), color="pink", alpha = 0.5, cex=0.5) +
+  geom_point(data = df, aes(true, max_no_fossils), color="pink", alpha=0.5) +
+  geom_point(data = df, aes(true, min_no_fossils), color="pink", alpha=0.5) +
+  geom_linerange(aes(x=true, y=observed_means_no_fossils, ymin=min_no_fossils, ymax = max_no_fossils),colour="pink", alpha=0.5, size=1.1) +
+  geom_point(data = df, aes(true, max_fossils), color="green", alpha=0.5) +
+  geom_point(data = df, aes(true, min_fossils), color="green", alpha=0.5) +
+  geom_linerange(aes(x=true, y=observed_means_fossils, ymin=min_fossils, ymax = max_fossils),colour="green", alpha=0.5, size=1.1) +
+  geom_abline(slope = 1, intercept = 0, color="black")
+
+p
+```
