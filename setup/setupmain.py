@@ -38,7 +38,7 @@ if user == 'aam21005':
 useFASTA = True
 
 # No. points along the x and y axes
-ngridpoints = 3
+ngridpoints = 10
 
 # If ngridpoints > 1, this option is ignored and nreps is
 # instead set to ngridpoints^2
