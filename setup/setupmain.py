@@ -126,3 +126,11 @@ def run(maindir, nreps):
     setupsubst.substitutions({
         '__NREPS__': nreps,
         }, coverage_path, coverage_path)
+
+    #########################################
+    # Set up node-calibration.py script #
+    #########################################
+    node_calibration_path = os.path.join(maindir, 'node-calibration.py')
+    setupsubst.substitutions({
+        '__NREPS__': nreps,
+        }, node_calibration_path, node_calibration_path)
