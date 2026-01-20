@@ -35,14 +35,14 @@ Plot coverage.
 df <- data.frame(true, min_fossils, max_fossils, observed_means_fossils, min_no_fossils, max_no_fossils,observed_means_no_fossils)
 
 p <- ggplot() +
-  geom_point(data = df, aes(true, observed_means_no_fossils), color="pink", alpha = 0.5, cex=0.5) +
-  geom_point(data = df, aes(true, max_no_fossils), color="pink", alpha=0.5) +
-  geom_point(data = df, aes(true, min_no_fossils), color="pink", alpha=0.5) +
-  geom_linerange(aes(x=true, y=observed_means_no_fossils, ymin=min_no_fossils, ymax = max_no_fossils),colour="pink", alpha=0.5, size=1.1) +
-  geom_point(data = df, aes(true, max_fossils), color="green", alpha=0.5) +
-  geom_point(data = df, aes(true, min_fossils), color="green", alpha=0.5) +
-  geom_linerange(aes(x=true, y=observed_means_fossils, ymin=min_fossils, ymax = max_fossils),colour="green", alpha=0.5, size=1.1) +
-  geom_abline(slope = 1, intercept = 0, color="black")
+  geom_point(data = df, aes(true, observed_means_fossils), color="black", alpha = 0.5, cex=1.0) +
+  geom_point(data = df, aes(true, max_no_fossils), color="mediumvioletred", alpha=0.2) +
+  geom_point(data = df, aes(true, min_no_fossils), color="mediumvioletred", alpha=0.2) +
+  geom_linerange(aes(x=true, y=observed_means_no_fossils, ymin=min_no_fossils, ymax = max_no_fossils),colour="mediumvioletred", alpha=0.2, size=2) +
+  geom_point(data = df, aes(true, max_fossils), color="deepskyblue", alpha=0.2) +
+  geom_point(data = df, aes(true, min_fossils), color="deepskyblue", alpha=0.2) +
+  geom_linerange(aes(x=true, y=observed_means_fossils, ymin=min_fossils, ymax = max_fossils),colour="deepskyblue", alpha=0.2, size=2) +
+  geom_abline(slope = 1, intercept = 0, color="black") + ylim(0.25, 1.5)+ xlab("true height") + ylab("observed height with fossils")
 
 p
 ```
