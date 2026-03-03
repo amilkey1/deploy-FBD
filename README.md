@@ -13,4 +13,4 @@ Summarize output:\
 `python3 ruv.py` to get ranks for validation.\
 `python3 coverage.py` to get coverage intervals for validation.\
 `python3 node-calibration.py` to extract information from output files 'nodes_with_fossil_calibration_ages.txt'. These files contain fossil number, 95% HPD intervals for sampled fossil dates, and observed means of sampled fossil dates. \
-`plot-validation-template.Rmd` provides a template for visualizing validation output.\
+`plot-validation-template.Rmd` provides a template for visualizing validation output.
