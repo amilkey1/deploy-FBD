@@ -1,4 +1,4 @@
-These scripts set up simulations for SMCTree (https://github.com/amilkey1/SMCtree/) program that performs divergence time estimation using sequential Monte Carlo.\
+These scripts set up simulations for SMCTree (https://github.com/amilkey1/SMCtree/) program that performs divergence time estimation using sequential Monte Carlo.
 
 To run, change settings in `setup/setupmain.py` directory.\
 Add simulated fossil settings (fossils and taxsets) in `rep-template/sim/'.conf` file.\
