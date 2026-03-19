@@ -194,7 +194,7 @@ def run(rep, nreps, maindir, repdir, rnseed):
     if nreps == 1:
          fossil_age      = (setupmain.fossil_min_age + setupmain.fossil_max_age)/2.0
     else:
-        fossil_age      =  setupmain.fossil_min_age + row*(setupmain.fossil_max_age  - setupmain.fossil_max_age)/(dim-1)
+        fossil_age      =  setupmain.fossil_min_age + row*(setupmain.fossil_max_age  - setupmain.fossil_min_age)/(dim-1)
     
     ##############################
     # Set up the "sim" directory #
