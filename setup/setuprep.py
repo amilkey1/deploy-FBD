@@ -251,12 +251,16 @@ def run(rep, nreps, maindir, repdir, rnseed):
         species = 'nspecies = %d\n' % nspecies
         species += '\n'
 
+    # set up sim fossils
+    sim_fossils = "simfossil = fossil_A " + str(fossil_age) + " - " + str(fossil_age) + " " + str(fossil_age) + "\n" + "taxset = 1 : A B fossil_A_FOSSIL"
+
     if setupmain.user == "aam21005":
          setupsubst.substitutions({
              '__RNSEED__':        rnseed, 
              '__MU__':             extinction_rate, 
              '__LAMBDA__':        speciation_rate,
              '__SUBSETS__':       subsets,
+             '__FOSSILS__' : sim_fossils,
              }, infile, outfile)
          os.rename(outfile, os.path.join(outer_simdir, 'smctree.conf'))
 
@@ -280,7 +284,7 @@ def run(rep, nreps, maindir, repdir, rnseed):
     outfile = infile
     smc_mu = extinction_rate
     smc_lambda = speciation_rate
-    smc_fossils = "fossil_A " + str(fossil_age) + " - " + str(fossil_age) + " " + str(fossil_age) + "\n" + "taxset = 1 : A B fossil_A_FOSSIL"
+    smc_fossils = "fossil = fossil_A " + str(fossil_age) + " - " + str(fossil_age) + " " + str(fossil_age) + "\n" + "taxset = 1 : A B fossil_A_FOSSIL"
         
     if setupmain.user == "aam21005":
         setupsubst.substitutions({
@@ -292,6 +296,7 @@ def run(rep, nreps, maindir, repdir, rnseed):
             '__SMCNGROUPS__': setupmain.smc_ngroups,
             '__SMCSAVEEVERY__': setupmain.smc_saveevery,
             '__SMCNTHREADS__': setupmain.smc_nthreads,
+            '__FOSSILS__' : smc_fossils,
             }, infile, outfile)
     os.rename(outfile, os.path.join(outer_smcdir, 'smctree.conf'))
     
