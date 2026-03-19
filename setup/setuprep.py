@@ -280,6 +280,7 @@ def run(rep, nreps, maindir, repdir, rnseed):
     outfile = infile
     smc_mu = extinction_rate
     smc_lambda = speciation_rate
+    smc_fossils = "fossil_A " + str(fossil_age) + " - " + str(fossil_age) + " " + str(fossil_age) + "\n" + "taxset = 1 : A B fossil_A_FOSSIL"
         
     if setupmain.user == "aam21005":
         setupsubst.substitutions({
