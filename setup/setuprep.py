@@ -260,7 +260,7 @@ def run(rep, nreps, maindir, repdir, rnseed):
              '__MU__':             extinction_rate, 
              '__LAMBDA__':        speciation_rate,
              '__SUBSETS__':       subsets,
-             '__FOSSILS__' : sim_fossils,
+             '__SIMFOSSILS__' : sim_fossils,
              }, infile, outfile)
          os.rename(outfile, os.path.join(outer_simdir, 'smctree.conf'))
 
