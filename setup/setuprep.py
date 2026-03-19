@@ -187,7 +187,14 @@ def run(rep, nreps, maindir, repdir, rnseed):
     else:
         extinction_rate      =  setupmain.mu_min + row*(setupmain.mu_max  - setupmain.mu_max)/(dim-1)
         speciation_rate = setupmain.lambda_min + col*(setupmain.lambda_max - setupmain.lambda_min)/(dim-1)
-            
+
+    #######################################################
+    # Set up fossils  #
+    #######################################################
+    if nreps == 1:
+         fossil_age      = (setupmain.fossil_min_age + setupmain.fossil_max_age)/2.0
+    else:
+        fossil_age      =  setupmain.fossil_min_age + row*(setupmain.fossil_max_age  - setupmain.fossil_max_age)/(dim-1)
     
     ##############################
     # Set up the "sim" directory #
