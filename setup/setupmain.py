@@ -52,6 +52,12 @@ max_n_loci = 1
 min_sites_per_locus = 1000
 max_sites_per_locus = 1000
 
+# fossil settings
+fossil_min_age = 0.05
+fossil_max_age = 1.0
+
+nfossils = 1
+
 # Shape of Gamma distribution determining relative rates among loci
 # Mean must equal 1, so scale=1/shape and variance = shape*scale^2 = 1/shape
 subset_relrate_shape = 10000.0
