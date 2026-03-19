@@ -6,14 +6,14 @@ import setupsubst
 user = 'aam21005'
 
 # Specify local = True if testing on your local laptop; if running on cluster set local = False
-local = True
+local = False
 
 # This directory will be created and will contain the master slurm scripts as well
 # as a subdirectory for every simulation replicate
 maindir = 'g'
 
 # Specify the master pseudorandom number seed
-master_seed = 123
+master_seed = 1
 
 # Specify whether grid should be mu vs lambda - always set to true
 mu_vs_lambda = True
@@ -38,7 +38,7 @@ if user == 'aam21005':
 useFASTA = True
 
 # No. points along the x and y axes
-ngridpoints = 10
+ngridpoints = 2
 
 # If ngridpoints > 1, this option is ignored and nreps is
 # instead set to ngridpoints^2
@@ -69,10 +69,10 @@ lambda_max = 1.0
 # SMC settings #
 ################
 
-smc_nparticles        = 10000
+smc_nparticles        = 20000
 if user == 'aam21005':
     smc_saveevery		  = 100
-    smc_nthreads		  = 3
+    smc_nthreads		  = 100
     smc_ngroups			  = 5
     smc_treefile   = 'trees.trees'
 else:
